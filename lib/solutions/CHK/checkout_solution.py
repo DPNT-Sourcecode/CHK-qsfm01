@@ -85,7 +85,9 @@ def checkout(skus):
             # instructions for U 
             elif item =='U':
                 if quantity>=4:
-                    cost = int(quantity/4)*3*price + quantity%4*price  
+                    cost = int(quantity/4)*3*price + quantity%4*price 
+                else: 
+                    cost = quantity*price 
             # instructions for V
             elif item == 'V':
                 # implementing cost variations between 3 and 5 products
@@ -109,7 +111,3 @@ def checkout(skus):
 
     except:
         raise NotImplementedError()
-
-
-
-
