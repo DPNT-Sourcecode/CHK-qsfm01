@@ -56,7 +56,7 @@ def checkout(skus):
                 cost_var_2_H = quantity%10*price + int(quantity/10)*80
                 # incase amount bought is a multiple of 15
                 if (quantity-10)>=0 and ((quantity-10)-5)>=0:
-                    cost_var_3_H = quantity%15*price + int(quantity/10)*200 + int((quantity-10)/5)*130
+                    cost_var_3_H = quantity%15*price + int(quantity/10)*80 + int((quantity-10)/5)*45
                     # return min of three options to favour customer
                     cost = min(cost_var_1_H, cost_var_2_H, cost_var_3_H)
                 else:
@@ -111,3 +111,4 @@ def checkout(skus):
 
     except:
         raise NotImplementedError()
+
