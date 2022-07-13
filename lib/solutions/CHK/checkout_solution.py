@@ -57,6 +57,3 @@ def checkout(skus):
 
     except:
         raise NotImplementedError()
-
-
-
