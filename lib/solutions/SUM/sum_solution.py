@@ -4,4 +4,3 @@ def compute(x, y):
         return x+y
     except:
         raise NotImplementedError()
-
