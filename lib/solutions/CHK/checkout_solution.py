@@ -42,7 +42,7 @@ def checkout(skus):
                 quantity -= B_free_quan
                 quantity = np.maximum(0, quantity)
                 cost = quantity%2*price + int(quantity/2)*45
-            # # instructions for E
+            # # incorrectly made instructions for E - now obsolete
             # elif item =='E':
             #     if quantity>=3:
             #         cost = int(quantity/3)*2*price + quantity%3*price
@@ -57,4 +57,5 @@ def checkout(skus):
 
     except:
         raise NotImplementedError()
+
 
