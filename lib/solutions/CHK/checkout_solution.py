@@ -19,6 +19,7 @@ def checkout(skus):
         ## for a smaller list like this I have favoured readability of the code to maintain
         # calculate cost of each item and total
         total = 0 
+        tracker = False
         for idx, item in enumerate(valid_items):
             quantity = items[item]
             price = prices[idx]
@@ -103,45 +104,51 @@ def checkout(skus):
                     cost = min(cost_var_1_V, cost_var_2_V) 
 
             # instructions for ['Z', 'S', 'T', 'Y', 'X']
-            elif item == 'S':
-                # process 3 for 45 list in order of highest to lowest priced
-                priority_item_count = [items[item] for item in ['Z', 'S', 'T', 'Y', 'X']]
-                priority_item_prices = [21,20,20,20,17]
-
-                count = sum(priority_item_count)
-
-                if count%3 == 0:
-                    to_deduct=count
+            elif item in ['Z', 'S', 'T', 'Y', 'X']:
+                if tracker == True:
+                    pass
                 else:
-                    to_deduct = count-count%3
-                
-                # add cost of all bundles of 3
-                any_three_cost = int(to_deduct/3)*45
+                    # process 3 for 45 list in order of highest to lowest priced
+                    priority_item_count = [items[item] for item in ['Z', 'S', 'T', 'Y', 'X']]
+                    priority_item_prices = [21,20,20,20,17]
 
-                # iterate through list removing in priority order
-                for i,v in enumerate(priority_item_count):
-                    while (v>0) and (to_deduct>0):
-                        v -= 1
-                        priority_item_count[i] -= 1
-                        to_deduct -= 1
-                        count -= 1
+                    count = sum(priority_item_count)
 
-                # calculate remaining amount
-                product = sum([x*y for x,y in zip(priority_item_prices,priority_item_count)])
+                    if count%3 == 0:
+                        to_deduct=count
+                    else:
+                        to_deduct = count-count%3
 
-                total += product+any_three_cost
+                    # add cost of all bundles of 3
+                    any_three_cost = int(to_deduct/3)*45
+
+                    # iterate through list removing in priority order
+                    for ind,val in enumerate(priority_item_count):
+                        while (val>0) and (to_deduct>0):
+                            val -= 1
+                            priority_item_count[ind] -= 1
+                            to_deduct -= 1
+                            count -= 1
+
+                    # calculate remaining amount
+                    product = sum([x*y for x,y in zip(priority_item_prices, priority_item_count)])
+                    
+                    total += product+any_three_cost
+                    # set tracker to true to not process again
+                    tracker = True
             
             # processing ['Z', 'T', 'Y', 'X'] together with 'S'
             elif item in ['Z', 'T', 'Y', 'X']:
                 pass
-                
-            # others
+
             # others
             else:
                 cost = quantity*price
             total += cost
+            cost = 0
 
         return total
 
     except:
         raise NotImplementedError()
+
