@@ -7,4 +7,3 @@ def checkout(skus):
         print(skus)
     except:
         raise NotImplementedError()
-
