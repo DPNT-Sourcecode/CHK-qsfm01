@@ -1,4 +1,4 @@
-
+import numpy as np
 from collections import Counter
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -32,17 +32,22 @@ def checkout(skus):
                     cost_var_3 = quantity%8*price + int(quantity/5)*200 + int((quantity-5)/3)*130
                     # return min of three options to favour customer
                     cost = min(cost_var_1, cost_var_2, cost_var_3)
-                # return min of two options to favour customer
-                cost = min(cost_var_1, cost_var_2)     
+                else:
+                    # return min of two options to favour customer
+                    cost = min(cost_var_1, cost_var_2)     
             # instructions for B
             elif item == 'B':
+                # calculate if any B are free from 2Es
+                B_free_quan = int(items["E"]/2)
+                quantity -= B_free_quan
+                quantity = np.maximum(0, quantity)
                 cost = quantity%2*price + int(quantity/2)*45
-            # instructions for E
-            elif item =='E':
-                if quantity>=3:
-                    cost = int(quantity/3)*2*price + quantity%3*price
-                else: 
-                    cost = quantity*price
+            # # instructions for E
+            # elif item =='E':
+            #     if quantity>=3:
+            #         cost = int(quantity/3)*2*price + quantity%3*price
+            #     else: 
+            #         cost = quantity*price
             # others
             else:
                 cost = quantity*price
@@ -52,3 +57,4 @@ def checkout(skus):
 
     except:
         raise NotImplementedError()
+
