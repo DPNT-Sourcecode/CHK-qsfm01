@@ -6,10 +6,11 @@ def checkout(skus):
     try:
         # counter dictionary of all items 
         items = Counter(skus)
-        prices = [50,30,20,15,40,10]
+        prices = [50,30,20,15,40,10,20,10,35,60,80,90,15,40,10,50,30,50,30,20,40,50,20,90,10,50]
 
         # check item validity
-        valid_items = ['A', 'B', 'C', 'D', 'E', 'F']
+        valid_items = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+                        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         for item in items.keys():
             if item not in valid_items:
                 return -1
@@ -109,4 +110,5 @@ def checkout(skus):
 
     except:
         raise NotImplementedError()
+
 
