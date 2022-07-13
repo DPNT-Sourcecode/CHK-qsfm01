@@ -48,6 +48,58 @@ def checkout(skus):
                     cost = int(quantity/3)*2*price + quantity%3*price
                 else: 
                     cost = quantity*price
+
+            # instructions for H 
+            elif item == 'H':
+                # implementing cost variations between 5 and 10 products
+                cost_var_1 = quantity%5*price + int(quantity/5)*45
+                cost_var_2 = quantity%10*price + int(quantity/10)*80
+                # incase amount bought is a multiple of 15
+                if (quantity-10)>=0 and ((quantity-10)-5)>=0:
+                    cost_var_3 = quantity%15*price + int(quantity/10)*200 + int((quantity-10)/5)*130
+                    # return min of three options to favour customer
+                    cost = min(cost_var_1, cost_var_2, cost_var_3)
+                else:
+                    # return min of two options to favour customer
+                    cost = min(cost_var_1, cost_var_2)     
+            # instructions for K 
+            elif item == 'K':
+                # calculate if any K are free from 2Ks
+                cost = quantity%2*price + int(quantity/2)*150 
+            # instructions for M 
+            elif item == 'M':
+                # calculate if any B are free from 2Es
+                M_free_quan = int(items["N"]/3)
+                quantity -= M_free_quan
+                quantity = int(np.maximum(0, quantity))
+                cost = quantity*price
+            elif item == 'P':
+                # calculate if any B are free from 2Es
+                cost = quantity%5*price + int(quantity/5)*200                     
+            elif item == 'Q':
+                # calculate if any B are free from 2Es                    
+                Q_free_quan = int(items["R"]/3)
+                quantity -= Q_free_quan
+                quantity = int(np.maximum(0, quantity))    
+                cost = quantity%3*price + int(quantity/3)*80 
+            # instructions for U 
+            elif item =='U':
+                if quantity>=4:
+                    cost = int(quantity/4)*3*price + quantity%4*price  
+            # instructions for V
+            if item == 'V':
+                # implementing cost variations between 3 and 5 products
+                cost_var_1 = quantity%2*price + int(quantity/2)*90
+                cost_var_2 = quantity%3*price + int(quantity/3)*130
+                # incase amount bought is a multiple of 8
+                if (quantity-3)>=0 and ((quantity-3)-2)>=0:
+                    cost_var_3 = quantity%5*price + int(quantity/3)*130 + int((quantity-3)/2)*90
+                    # return min of three options to favour customer
+                    cost = min(cost_var_1, cost_var_2, cost_var_3)
+                else:
+                    # return min of two options to favour customer
+                    cost = min(cost_var_1, cost_var_2) 
+
             # others
             else:
                 cost = quantity*price
@@ -57,3 +109,4 @@ def checkout(skus):
 
     except:
         raise NotImplementedError()
+
