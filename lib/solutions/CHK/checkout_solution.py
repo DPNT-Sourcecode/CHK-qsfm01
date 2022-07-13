@@ -24,7 +24,6 @@ def checkout(skus):
             price = prices[idx]
             # instructions for A
             if item == 'A':
-                #cost = quantity%3*price + int(quantity/3)*130
                 # implementing cost variations between 3 and 5 products
                 cost_var_1_A = quantity%3*price + int(quantity/3)*130
                 cost_var_2_A = quantity%5*price + int(quantity/5)*200
@@ -88,7 +87,7 @@ def checkout(skus):
                 if quantity>=4:
                     cost = int(quantity/4)*3*price + quantity%4*price  
             # instructions for V
-            if item == 'V':
+            elif item == 'V':
                 # implementing cost variations between 3 and 5 products
                 cost_var_1_V = quantity%2*price + int(quantity/2)*90
                 cost_var_2_V = quantity%3*price + int(quantity/3)*130
@@ -110,6 +109,7 @@ def checkout(skus):
 
     except:
         raise NotImplementedError()
+
 
 
 
