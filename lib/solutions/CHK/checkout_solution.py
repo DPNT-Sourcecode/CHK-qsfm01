@@ -66,7 +66,7 @@ def checkout(skus):
             # instructions for K 
             elif item == 'K':
                 # calculate if any K are free from 2Ks
-                cost = quantity%2*price + int(quantity/2)*150 
+                cost = quantity%2*price + int(quantity/2)*120 
             # instructions for M 
             elif item == 'M':
                 # calculate if any B are free from 2Es
@@ -136,10 +136,6 @@ def checkout(skus):
                     total += product+any_three_cost
                     # set tracker to true to not process again
                     tracker = True
-            
-            # processing ['Z', 'T', 'Y', 'X'] together with 'S'
-            elif item in ['Z', 'T', 'Y', 'X']:
-                pass
 
             # others
             else:
@@ -151,4 +147,5 @@ def checkout(skus):
 
     except:
         raise NotImplementedError()
+
 
