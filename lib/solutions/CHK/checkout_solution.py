@@ -40,7 +40,7 @@ def checkout(skus):
                 # calculate if any B are free from 2Es
                 B_free_quan = int(items["E"]/2)
                 quantity -= B_free_quan
-                quantity = np.maximum(0, quantity)
+                quantity = int(np.maximum(0, quantity))
                 cost = quantity%2*price + int(quantity/2)*45
             # # incorrectly made instructions for E - now obsolete
             # elif item =='E':
@@ -57,5 +57,6 @@ def checkout(skus):
 
     except:
         raise NotImplementedError()
+
 
 
